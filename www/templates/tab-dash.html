@@ -1,0 +1,109 @@
+<ion-view view-title="Dashboard">
+  <ion-nav-bar class="bar-balanced">
+    <ion-nav-buttons side="right">
+      <button class="button button-icon ion-loop" ng-click="refresh()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="padding has-header">
+    <h3 class="text-center">Welcome to Steem Monitor</h3>
+    <div class="row">
+    	<div class="col bold">
+    	Block
+    	</div>
+    	<div class="col">
+    	{{blocks.head_block_number}}
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col bold">
+    	Time
+    	</div>
+    	<div class="col">
+    	{{blocks.time.replace("T", " ")}}
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col bold">
+    	Witness
+    	</div>
+    	<div class="col">
+    	{{blocks.current_witness}}
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col bold">
+    	STEEM Supply
+    	</div>
+    	<div class="col">
+    	{{blocks.current_supply.split(" ")[0]|number}}
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col bold">
+    	SBD Supply
+    	</div>
+    	<div class="col">
+    	{{blocks.current_sbd_supply.split(" ")[0]|number}}
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col bold">
+    	Participation
+    	</div>
+    	<div class="col">
+    	{{(blocks.participation_count)*100/128}} %
+    	</div>
+    </div>
+    <hr>
+    <div ng-if="rate">
+    <div class="row">
+    	<div class="col bold">
+    	Price USD
+    	</div>
+    	<div class="col">
+    	<i class="icon ion-social-usd"></i>{{rate.price_usd|number}}
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col bold">
+    	Price BTC
+    	</div>
+    	<div class="col">
+    	<i class="icon ion-social-bitcoin"></i>{{rate.price_btc|number:5}}
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col bold">
+    	Change 1h
+    	</div>
+    	<div class="col">
+    	{{rate.percent_change_1h}} %
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col bold">
+    	Change 24h
+    	</div>
+    	<div class="col">
+    	{{rate.percent_change_24h}} %
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col bold">
+    	Change 7d
+    	</div>
+    	<div class="col">
+    	{{rate.percent_change_7d}} %
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col bold">
+    	Volume 24h
+    	</div>
+    	<div class="col">
+    	<i class="icon ion-social-usd"></i>{{rate['24h_volume_usd']|number}}
+    	</div>
+    </div>
+    </div>
+  </ion-content>
+</ion-view>

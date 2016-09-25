@@ -1,0 +1,29 @@
+<ion-view view-title="Witnesses">
+  <ion-content>
+    <div class="list">
+      <div class="item item-avatar item-button-right" ng-repeat="(key, w) in witnesses">
+        <ng-letter-avatar charCount="2" fontSize="20" data="{{w.owner}}"></ng-letter-avatar>
+        <div ng-click="openUrl(w.url)">
+          <div class="row" style="margin:0;padding:0;">
+            <div class="col col-67">
+              <h2>{{key+1}}. {{w.owner}} <i class="icon ion-eye-disabled assertive" ng-if="w.signing_key=='STM1111111111111111111111111111111114T1Anm'"></i></h2>
+              <p>{{w.sbd_exchange_rate.base}}</p>
+              <p>{{w.last_sbd_exchange_update|timeago}}</p>
+            </div>
+            <div class="col col-33">
+              <h2>{{w.votes|shortNumber}}</h2>
+              <p>{{w.running_version}}</p>
+              <p class="text-italic"><i class="icon ion-alert-circled assertive"></i> {{w.total_missed}}</p>
+            </div>
+          </div>
+        </div>
+        <button class="button button-calm" ng-if="isNotify(w.owner)" ng-click="unnotify(w.owner)">
+          <i class="icon ion-ios-bell"></i>
+        </button>
+        <button class="button button-calm" ng-if="!isNotify(w.owner)" ng-click="notify(w.owner)">
+          <i class="icon ion-ios-bell-outline"></i>
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

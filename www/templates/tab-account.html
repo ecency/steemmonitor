@@ -1,0 +1,20 @@
+<ion-view view-title="Settings">
+  <ion-content>
+	<ul class="list">
+	  <li class="item item-toggle">
+	     Participation Alert < 75%
+	     <label class="toggle toggle-balanced">
+	       <input type="checkbox" ng-model="settings.enableNotifications" ng-change="changeSettings()">
+	       <div class="track">
+	         <div class="handle"></div>
+	       </div>
+	     </label>
+	  </li>
+		
+	    <label class="item item-input">
+		    <span class="input-label">Websocket</span>
+		    <input type="text" placeholder="Server/Node" ng-model="$root.$storage.socket" style="width:100%;">
+		</label>
+	</ul>
+  </ion-content>
+</ion-view>
