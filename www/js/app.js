@@ -9,7 +9,7 @@ angular.module('steem.witness', ['ionic', 'steem.witness.controllers', 'steem.wi
       FCMPlugin.getToken(
         function(token){
           console.log("device "+token);
-          $rootScope.$storage.deviceid = token;
+          $rootScope.$storage.deviceid = token || null;
         },
         function(err){
           console.log('error retrieving token: ' + err);
@@ -36,7 +36,7 @@ angular.module('steem.witness', ['ionic', 'steem.witness.controllers', 'steem.wi
         }
       );  
     //}
-    
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -91,11 +91,9 @@ angular.module('steem.witness', ['ionic', 'steem.witness.controllers', 'steem.wi
         $rootScope.showAlert(title, msg);
       }
     };
-    //if (window.cordova) {
+    if (window.cordova) {
       window.open = cordova.InAppBrowser.open;  
-
-      
-   //}
+    }
   });
 
   

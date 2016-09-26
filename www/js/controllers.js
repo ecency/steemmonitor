@@ -132,13 +132,14 @@ angular.module('steem.witness.controllers', [])
   };
   $scope.changeSettings = function() {
     console.log('update participation');
-
-    APIs.updateParticipation($rootScope.$storage.deviceid, $scope.settings.enableNotifications).then(function(res){
-      console.log("updated participation");      
-      if (!$scope.$$phase){
-        $scope.$apply();
-      }
-    });  
+    if ($rootScope.$storage.deviceid) {
+      APIs.updateParticipation($rootScope.$storage.deviceid, $scope.settings.enableNotifications).then(function(res){
+        console.log("updated participation");      
+        if (!$scope.$$phase){
+          $scope.$apply();
+        }
+      });    
+    }
   };
 
   $scope.$on('$ionicView.enter', function(e) {
