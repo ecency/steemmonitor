@@ -115,7 +115,7 @@ angular.module('steem.witness.controllers', [])
     };
     setTimeout(function() {
       $scope.getSubs();
-    }, 5);
+    }, 50);
   });
 
 })

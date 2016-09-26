@@ -61,7 +61,7 @@ angular.module('steem.witness', ['ionic', 'steem.witness.controllers', 'steem.wi
     if (window.cordova) {
       window.open = cordova.InAppBrowser.open;  
 
-      if (!ionic.Platform.isWindowsPhone()) {
+      //if (!ionic.Platform.isWindowsPhone()) {
         FCMPlugin.getToken(
           function(token){
             console.log("device "+token);
@@ -91,7 +91,7 @@ angular.module('steem.witness', ['ionic', 'steem.witness.controllers', 'steem.wi
             console.log('Error registering onNotification callback: ' + err);
           }
         );  
-      }
+      //}
     }
   });
 
