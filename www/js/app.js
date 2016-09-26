@@ -58,7 +58,7 @@ angular.module('steem.witness', ['ionic', 'steem.witness.controllers', 'steem.wi
         $rootScope.showAlert(title, msg);
       }
     };
-    if (window.cordova) {
+    //if (window.cordova) {
       window.open = cordova.InAppBrowser.open;  
 
       //if (!ionic.Platform.isWindowsPhone()) {
@@ -92,7 +92,7 @@ angular.module('steem.witness', ['ionic', 'steem.witness.controllers', 'steem.wi
           }
         );  
       //}
-    }
+   //}
   });
 
   
