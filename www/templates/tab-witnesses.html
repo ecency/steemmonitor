@@ -1,4 +1,9 @@
 <ion-view view-title="Witnesses">
+  <ion-nav-bar class="bar-balanced">
+    <ion-nav-buttons side="right">
+      <button class="button button-icon ion-loop" ng-click="refresh()"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
   <ion-content>
     <div class="list">
       <div class="item item-avatar item-button-right" ng-repeat="(key, w) in witnesses">

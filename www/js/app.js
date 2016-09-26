@@ -41,7 +41,7 @@ angular.module('steem.witness', ['ionic', 'steem.witness.controllers', 'steem.wi
     if (navigator.splashscreen) {
       setTimeout(function() {
         navigator.splashscreen.hide();  
-      }, 1000);
+      }, 3000);
     }
     //steem.api.setWebSocket($rootScope.$storage.socket);
 

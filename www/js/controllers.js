@@ -78,9 +78,7 @@ angular.module('steem.witness.controllers', [])
       $ionicLoading.hide();
     });
   };
-
-  
-  $scope.$on('$ionicView.beforeEnter', function(e) {
+  $scope.refresh = function() {
     $ionicLoading.show({
       noBackdrop : true,
       template: '<ion-spinner></ion-spinner>'
@@ -92,31 +90,35 @@ angular.module('steem.witness.controllers', [])
       if (!$scope.$$phase){
         $scope.$apply();
       }
-    });
-    $scope.getSubs = function() {
-      if ($rootScope.$storage.deviceid) {
-        $ionicLoading.show({
-          noBackdrop : true,
-          template: '<ion-spinner></ion-spinner>'
-        });
-        $scope.mysubs = [];
-        APIs.getSubscriptions($rootScope.$storage.deviceid).then(function(res){
-          console.log("subs");
-          //console.log(angular.toJson(res));
-          for (var i = 0; i < res.data.length; i++) {
-            $scope.mysubs.push(res.data[i].witness);
-          }
-          $ionicLoading.hide();
-          if (!$scope.$$phase){
-            $scope.$apply();
-          }
-        });  
-      }
-    };
-    setTimeout(function() {
-      $scope.getSubs();
-    }, 50);
+    });  
+  };
+
+  $scope.getSubs = function() {
+    if ($rootScope.$storage.deviceid) {
+      $ionicLoading.show({
+        noBackdrop : true,
+        template: '<ion-spinner></ion-spinner>'
+      });
+      $scope.mysubs = [];
+      APIs.getSubscriptions($rootScope.$storage.deviceid).then(function(res){
+        console.log("subs");
+        //console.log(angular.toJson(res));
+        for (var i = 0; i < res.data.length; i++) {
+          $scope.mysubs.push(res.data[i].witness);
+        }
+        $ionicLoading.hide();
+        if (!$scope.$$phase){
+          $scope.$apply();
+        }
+      });  
+    }
+  };
+
+  $scope.$on('$ionicView.afterEnter', function(e) {
+    $scope.getSubs();
   });
+
+  $scope.refresh();
 
 })
 
@@ -156,8 +158,10 @@ angular.module('steem.witness.controllers', [])
           $ionicLoading.hide();
         });  
       }  
-    }
-    $scope.getMyParticipation();
+    };
+    setTimeout(function() {
+      $scope.getMyParticipation();  
+    }, 10);
   });
 
 });
