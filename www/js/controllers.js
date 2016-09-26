@@ -145,18 +145,19 @@ angular.module('steem.witness.controllers', [])
   $scope.$on('$ionicView.enter', function(e) {
     $scope.getMyParticipation = function() {
       if ($rootScope.$storage.deviceid) {
-        $ionicLoading.show({
+        console.log($rootScope.$storage.deviceid);
+        /*$ionicLoading.show({
           noBackdrop : true,
           template: '<ion-spinner></ion-spinner>'
-        });
+        });*/
         APIs.getParticipation($rootScope.$storage.deviceid).then(function(res){
           console.log("get participation "+angular.toJson(res));
           $scope.settings.enableNotifications = res.data.participation;
           if (!$scope.$$phase){
             $scope.$apply();
           }
-          $ionicLoading.hide();
-          $ionicLoading.hide();
+          /*$ionicLoading.hide();
+          $ionicLoading.hide();*/
         });  
       }  
     };
