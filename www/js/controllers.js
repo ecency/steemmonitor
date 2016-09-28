@@ -3,7 +3,21 @@ angular.module('steem.witness.controllers', [])
 .controller('DashCtrl', function($scope, $interval, $rootScope, $ionicLoading, APIs) {
 
   $scope.$on('$ionicView.enter', function(e) {
-    
+    if (window.cordova) {
+      if (!$rootScope.$storage.deviceid) {
+        if (!ionic.Platform.isWindowsPhone()) {
+          FCMPlugin.getToken(
+            function(token){
+              console.log("device "+token);
+              $rootScope.$storage.deviceid = token || null;
+            },
+            function(err){
+              console.log('error retrieving token: ' + err);
+            }
+          );
+        }
+      }
+    }
   });
   
   $scope.refresh = function() {
@@ -118,6 +132,21 @@ angular.module('steem.witness.controllers', [])
 
   $scope.$on('$ionicView.afterEnter', function(e) {
     $scope.getSubs();
+    if (window.cordova) {
+      if (!$rootScope.$storage.deviceid) {
+        if (!ionic.Platform.isWindowsPhone()) {
+          FCMPlugin.getToken(
+            function(token){
+              console.log("device "+token);
+              $rootScope.$storage.deviceid = token || null;
+            },
+            function(err){
+              console.log('error retrieving token: ' + err);
+            }
+          );
+        }
+      }
+    }
   });
 
   $scope.refresh();
@@ -168,6 +197,22 @@ angular.module('steem.witness.controllers', [])
     setTimeout(function() {
       $scope.getMyParticipation();  
     }, 10);
+
+    if (window.cordova) {
+      if (!$rootScope.$storage.deviceid) {
+        if (!ionic.Platform.isWindowsPhone()) {
+          FCMPlugin.getToken(
+            function(token){
+              console.log("device "+token);
+              $rootScope.$storage.deviceid = token || null;
+            },
+            function(err){
+              console.log('error retrieving token: ' + err);
+            }
+          );
+        }
+      }
+    }
   });
 
 });
