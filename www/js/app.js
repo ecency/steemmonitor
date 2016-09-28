@@ -5,38 +5,6 @@ angular.module('steem.witness', ['ionic', 'steem.witness.controllers', 'steem.wi
   $rootScope.$storage = $localStorage;
   $ionicPlatform.ready(function() {
 
-  //if (!ionic.Platform.isWindowsPhone()) {
-      FCMPlugin.getToken(
-        function(token){
-          console.log("device "+token);
-          $rootScope.$storage.deviceid = token || null;
-        },
-        function(err){
-          console.log('error retrieving token: ' + err);
-        }
-      );
-
-
-      //FCMPlugin.onNotification( onNotificationCallback(data), successCallback(msg), errorCallback(err) )
-      //Here you define your application behaviour based on the notification data.
-      FCMPlugin.onNotification(
-        function(data){
-          if(data.wasTapped){
-            $rootScope.showAlert(data.title, data.body);
-          } else{
-            $rootScope.showMessage(data.title, data.body);
-          }
-        },
-        function(msg){
-          console.log('onNotification callback successfully registered: ' + msg);
-          //alert("msg "+JSON.stringify(msg));
-        },
-        function(err){
-          console.log('Error registering onNotification callback: ' + err);
-        }
-      );  
-    //}
-
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -93,10 +61,40 @@ angular.module('steem.witness', ['ionic', 'steem.witness.controllers', 'steem.wi
     };
     if (window.cordova) {
       window.open = cordova.InAppBrowser.open;  
+
+      if (!ionic.Platform.isWindowsPhone()) {
+        FCMPlugin.getToken(
+          function(token){
+            console.log("device "+token);
+            $rootScope.$storage.deviceid = token || null;
+          },
+          function(err){
+            $rootScope.showAlert('Error', 'error retrieving token: ' + err);
+          }
+        );
+
+
+        //FCMPlugin.onNotification( onNotificationCallback(data), successCallback(msg), errorCallback(err) )
+        //Here you define your application behaviour based on the notification data.
+        FCMPlugin.onNotification(
+          function(data){
+            if(data.wasTapped){
+              $rootScope.showAlert(data.title, data.body);
+            } else{
+              $rootScope.showMessage(data.title, data.body);
+            }
+          },
+          function(msg){
+            console.log('onNotification callback successfully registered: ' + msg);
+            //alert("msg "+JSON.stringify(msg));
+          },
+          function(err){
+            $rootScope.showAlert('Error','Error registering onNotification callback: ' + err);
+          }
+        );  
+      }
     }
   });
-
-  
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {

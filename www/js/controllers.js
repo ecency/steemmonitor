@@ -63,6 +63,8 @@ angular.module('steem.witness.controllers', [])
         $scope.getSubs();
         $ionicLoading.hide();
       });
+    } else {
+      $rootScope.showMessage('Error',"Your Device doesn't have token for notifications! Please make sure you allow push notifications and restart app!");
     }
   };
 
@@ -139,6 +141,8 @@ angular.module('steem.witness.controllers', [])
           $scope.$apply();
         }
       });    
+    } else {
+      $rootScope.showMessage('Error',"Your Device doesn't have token for notifications! Please make sure you allow push notifications and restart app!");
     }
   };
 
