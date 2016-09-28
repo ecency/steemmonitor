@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.netsolutions.esteemwitness" version="0.0.1" ios-CFBundleVersion="0.0.2" android-versionCode="02" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.netsolutions.esteemwitness" version="1.0.1" ios-CFBundleVersion="1.0.1"  xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Steem Monitor</name>
+  <!--android-versionCode="02"-->
   <description>
         Application for Steem Witnesses and Users
     </description>
